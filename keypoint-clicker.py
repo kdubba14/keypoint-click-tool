@@ -1,9 +1,5 @@
-import cv2
+import cv2, time, string, copy, os, sys, getopt
 import numpy as np
-import time, string
-import copy
-import os
-import sys, getopt
 from os import listdir
 
 def main(argv):

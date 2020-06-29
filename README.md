@@ -1,9 +1,9 @@
 # Keypoint Click Tool
 ### Made for: The data collection process of labeling self-obtained data on keypoints
 ### Keypoints used in:
-- Facial Recognition
-- Body Pose Recognition
 - Hand Pose Recognition
+- Facial Recognition (supported soon)
+- Body Pose Recognition (supported soon)
 
 #### Generates a file called keypoint_labels.json once finished
 
