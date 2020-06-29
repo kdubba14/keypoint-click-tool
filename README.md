@@ -9,9 +9,11 @@
 
 ***A sample folder will be in the 'hands' folder***
 
-**NOTE:** The files are sorted in alphabetical order before running
-**NOTE:** At the moment a maximum of 21 keypoints are allowed in the program
-##### **NOTE:** Please refer to Keypoint-Example.png for the order of keypoints
+##### **NOTE:** The files are sorted in alphabetical order before running
+
+##### **NOTE:** At the moment a maximum of 21 keypoints are allowed in the program
+
+### **NOTE:** Please refer to Keypoint-Example.png for the order of keypoints
 
 ================================================
 
