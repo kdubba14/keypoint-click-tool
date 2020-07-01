@@ -81,10 +81,10 @@ def main(argv):
             thickness = -1
 
             # DNN CV2 HAND DETECTION MODEL
-            # inpBlob = cv2.dnn.blobFromImage(img, 1.0 / 255, (inWidth, inHeight), (0, 0, 0), swapRB=False, crop=False)
-            # net.setInput(inpBlob)
-            # output = net.forward()
-            # print("time taken by network : {:.3f}".format(time.time() - t))
+            inpBlob = cv2.dnn.blobFromImage(img, 1.0 / 255, (inWidth, inHeight), (0, 0, 0), swapRB=False, crop=False)
+            net.setInput(inpBlob)
+            output = net.forward()
+            print("time taken by network : {:.3f}".format(time.time() - t))
 
             keypoints = []
 
@@ -134,32 +134,32 @@ def main(argv):
 
             points = []
 
-            # for i in range(nPoints):
-            #     # confidence map of corresponding body's part.
-            #     probMap = output[0, i, :, :]
-            #     probMap = cv2.resize(probMap, (frameWidth, frameHeight))
+            for i in range(nPoints):
+                # confidence map of corresponding body's part.
+                probMap = output[0, i, :, :]
+                probMap = cv2.resize(probMap, (frameWidth, frameHeight))
                 
-            #     # Find global maxima of the probMap.
-            #     minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
+                # Find global maxima of the probMap.
+                minVal, prob, minLoc, point = cv2.minMaxLoc(probMap)
                 
-            #     if prob > threshold :
-            #         cv2.circle(frameCopy, (int(point[0]), int(point[1])), 8, (0, 255, 255), thickness=-1, lineType=cv2.FILLED)
-            #         cv2.putText(frameCopy, "{}".format(i), (int(point[0]), int(point[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, lineType=cv2.LINE_AA)
+                if prob > threshold :
+                    cv2.circle(frameCopy, (int(point[0]), int(point[1])), 8, (0, 255, 255), thickness=-1, lineType=cv2.FILLED)
+                    cv2.putText(frameCopy, "{}".format(i), (int(point[0]), int(point[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, lineType=cv2.LINE_AA)
                 
-            #         # Add the point to the list if the probability is greater than the threshold
-            #         points.append((int(point[0]), int(point[1])))
-            #     else :
-            #         points.append(None)
+                    # Add the point to the list if the probability is greater than the threshold
+                    points.append((int(point[0]), int(point[1])))
+                else :
+                    points.append(None)
 
             # Draw Skeleton
-            # for pair in POSE_PAIRS:
-            #     partA = pair[0]
-            #     partB = pair[1]
+            for pair in POSE_PAIRS:
+                partA = pair[0]
+                partB = pair[1]
 
-            #     if points[partA] and points[partB]:
-            #         cv2.line(img, points[partA], points[partB], (255, 255, 255), 1)
-            #         cv2.circle(img, points[partA], 1, (255, 255, 255, 0.4), thickness=-1, lineType=cv2.FILLED)
-            #         cv2.circle(img, points[partB], 1, (255, 255, 255, 0.4), thickness=-1, lineType=cv2.FILLED)
+                if points[partA] and points[partB]:
+                    cv2.line(img, points[partA], points[partB], (255, 255, 255), 1)
+                    cv2.circle(img, points[partA], 1, (255, 255, 255, 0.4), thickness=-1, lineType=cv2.FILLED)
+                    cv2.circle(img, points[partB], 1, (255, 255, 255, 0.4), thickness=-1, lineType=cv2.FILLED)
     
             cv2.namedWindow('Output-Skeleton')
             cv2.setMouseCallback('Output-Skeleton', click_and_crop)
